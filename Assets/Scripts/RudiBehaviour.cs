@@ -17,6 +17,9 @@ public class RudiBehaviour : MonoBehaviour {
             case "Ulf":
                 Debug.Log("You are both dead... Great Work");
                 break;
+            case "Water":
+                Debug.Log("You drowned");
+                break;
             default:
                 break;
         }

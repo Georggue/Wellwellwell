@@ -669,7 +669,6 @@ Prefab:
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: d0e3de3585c3e3d4581fafa581a494cb, type: 2}
-  m_RootGameObject: {fileID: 17862346}
   m_IsPrefabParent: 0
 --- !u!1 &982303787
 GameObject:
@@ -803,7 +802,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0e3de3585c3e3d4581fafa581a494cb, type: 2}
-  m_RootGameObject: {fileID: 1527710855}
   m_IsPrefabParent: 0
 --- !u!1 &1162030177
 GameObject:
@@ -814,9 +812,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1162030178}
   - component: {fileID: 1162030179}
+  - component: {fileID: 1162030180}
+  - component: {fileID: 1162030181}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -869,6 +869,33 @@ SpriteRenderer:
   m_Color: {r: 0.20663925, g: 0.27398422, b: 0.7205882, a: 0.522}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &1162030180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162030177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189d9a656863b5e40838408f96c8be37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaterRisingFactor: 0.0005
+--- !u!68 &1162030181
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162030177}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -0.5, y: 0.5}
+  - {x: 0.5, y: 0.5}
 --- !u!1001 &1224784978
 Prefab:
   m_ObjectHideFlags: 0
@@ -940,7 +967,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0e3de3585c3e3d4581fafa581a494cb, type: 2}
-  m_RootGameObject: {fileID: 479295696}
   m_IsPrefabParent: 0
 --- !u!1 &1356164056
 GameObject:
@@ -1481,7 +1507,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0e3de3585c3e3d4581fafa581a494cb, type: 2}
-  m_RootGameObject: {fileID: 1734433585}
   m_IsPrefabParent: 0
 --- !u!1 &2044103724
 GameObject:

@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Food
   - Ulf
+  - Water
   layers:
   - Default
   - TransparentFX
