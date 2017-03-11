@@ -80,6 +80,6 @@ public class AppleGrowth : MonoBehaviour
     {
         rb.gravityScale = NormalGravity;
         attached = false;
-        StartCoroutine(Rot());
+        //StartCoroutine(Rot());
     }
 }
