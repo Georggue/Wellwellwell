@@ -17,11 +17,13 @@ public class EnemyMovement : MonoBehaviour
     public float DotzAngle = 45;
     public float DotzForce = 5;
     private float DotzCooldown = 1;
+    private ParticleSystem particles;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
         fs = GetComponentInChildren<FootScript>();
+        particles = GetComponentInChildren<ParticleSystem>(true);
 	}
 	
 	void Update ()
@@ -49,6 +51,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (dotzCooldownActive) return;
 
+        particles.gameObject.SetActive(true);
         Vector2 dotzDirection = Vector2.up;
         if(dotzOrigin.x > transform.position.x)
         {
