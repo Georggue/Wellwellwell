@@ -48,6 +48,9 @@ public class Spawner : MonoBehaviour
                 current.GetComponent<Rigidbody2D>().gravityScale = 0;
                 current.GetComponent<EnemyMovement>().MoveDir.y = 1f;
                 current.layer = 11;
+                var angle = Random.Range(-5f, 5f);
+                rotations.x += angle;
+                current.GetComponent<EnemyMovement>().MoveDir= current.GetComponent<EnemyMovement>().MoveDir.Rotate(angle);
             }
             current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = rotations;
         }
@@ -59,6 +62,9 @@ public class Spawner : MonoBehaviour
                 rotations.x += 45;
                 current.GetComponent<Rigidbody2D>().gravityScale = 0;
                 current.GetComponent<EnemyMovement>().MoveDir.y = 1f;
+                var angle = Random.Range(-5f, 5f);
+                rotations.x += angle;
+                current.GetComponent<EnemyMovement>().MoveDir = current.GetComponent<EnemyMovement>().MoveDir.Rotate(angle);
                 current.layer = 11;
             }
             current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = rotations;
