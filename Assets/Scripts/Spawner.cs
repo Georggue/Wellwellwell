@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
                     yield return new WaitForSeconds(3);
                     int direction = (directionTrigger) ? -1 : 1;
                     GameObject current =  Instantiate(Prefabs[0], new Vector3(-8.5f* direction, 0.2f, 0),Quaternion.identity);
-                    current.transform.localScale = new Vector3(1.74f, 0.46f, 1.1f);
+                    current.transform.localScale = Vector3.one;
                     current.SetActive(true);
                     current.GetComponent<EnemyMovement>().MoveDir.x = direction;
                     directionTrigger = !directionTrigger;
