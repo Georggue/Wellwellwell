@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public List<GameObject> Prefabs;
-
+    public float TimeToSpawn;
     public enum SpawnerType
     {
         Food,
@@ -45,11 +45,11 @@ public class Spawner : MonoBehaviour
             switch (Type)
             {
                 case SpawnerType.Food:
-                    yield return new WaitForSeconds(5);
+                    yield return new WaitForSeconds(TimeToSpawn);
                     SpawnApple();
                     break;
                 case SpawnerType.Enemy:
-                    yield return new WaitForSeconds(3);
+                    yield return new WaitForSeconds(TimeToSpawn);
                     SpawnEnemy();
                     break;
                 default:

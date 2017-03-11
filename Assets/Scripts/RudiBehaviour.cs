@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class RudiBehaviour : MonoBehaviour
 {
     public UnityAction AppleEaten = () => { };
+    private Vector3 InitialSize;
+    public UnityAction<bool> GameEnd;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.tag)
@@ -19,9 +21,11 @@ public class RudiBehaviour : MonoBehaviour
                 break;
             case "Ulf":
                 Debug.Log("You are both dead... Great Work");
+                GameEnd(false);
                 break;
             case "Water":
                 Debug.Log("You drowned");
+                GameEnd(false);
                 break;
             default:
                 break;
@@ -36,6 +40,7 @@ public class RudiBehaviour : MonoBehaviour
         if (transform.localScale.y > 11.6f)
         {
             Debug.Log("You win");
+            GameEnd(true);
         }
     }
 
@@ -46,15 +51,23 @@ public class RudiBehaviour : MonoBehaviour
         if (transform.localScale.y < 1.6f)
         {
             Debug.Log("You are dead");
+            GameEnd(false);
         }
     }
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start ()
+    {
+        InitialSize = transform.localScale;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void Reset()
+    {
+        transform.localScale = InitialSize;
+    }
 }

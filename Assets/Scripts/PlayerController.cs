@@ -19,10 +19,11 @@ public class PlayerController : MonoBehaviour
     public float MinGroundDistance;
     public float RayCastOffset;
     public float MinDotzInput = 0.5f;
-
+    private Vector3 InitialPos;
     void Start ()
-	{
-	    rb = GetComponent<Rigidbody2D>();
+    {
+        InitialPos = transform.position;
+        rb = GetComponent<Rigidbody2D>();
         footScript = transform.GetComponentInChildren<FootScript>();
     }
 
@@ -63,4 +64,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        transform.position = InitialPos;
+    }
 }

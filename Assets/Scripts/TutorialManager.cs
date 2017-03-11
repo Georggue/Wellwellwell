@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 public class TutorialManager : MonoBehaviour
 {
+    
     public Text UiText;
     private List<string> TutorialStrings = new List<string>();
     public float ShowTextForSeconds;
@@ -12,8 +13,7 @@ public class TutorialManager : MonoBehaviour
     private bool rightPressed = false;
     private bool spacePressed = false;
     private bool startedGame = false;
-
-    public UnityAction OnControlsLearned = delegate { };
+    
     public UnityAction OnAppleLearned = delegate { };
     public UnityAction NewAppleRequested = delegate { };
     public UnityAction TutorialDone = delegate { };
@@ -22,8 +22,16 @@ public class TutorialManager : MonoBehaviour
     public void HandleTutorialApples()
     {
         appleCounter++;
-        if (appleCounter == 2)
+        if (appleCounter < 2)
+        {
+            NewAppleRequested();
+        }
+        else
+        {
             TutorialDone();
+        }
+       
+
     }
     void Start()
     {
@@ -72,7 +80,7 @@ public class TutorialManager : MonoBehaviour
         if (!startedGame && leftPressed && rightPressed && spacePressed)
         {
             startedGame = true;
-            OnControlsLearned();
+            NewAppleRequested();
             initGame();
         }
     }
