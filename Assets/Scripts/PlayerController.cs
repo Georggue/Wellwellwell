@@ -49,7 +49,16 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.collider.tag == "Enemy")
         {
-            ContactPoint2D hitPoint = collision.contacts[0];            
+            ContactPoint2D hitPoint = collision.contacts[0];
+           float angle = hitPoint.normal.GetAngle();
+            if(angle > -60 && angle < 60)
+            {
+                collision.gameObject.GetComponent<EnemyMovement>().Squish();
+            }
+            else
+            {
+                //dotz
+            }
         }
     }
 

@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour {
     public float MoveSpeed;
     private Rigidbody2D rb;
     private FootScript fs;
+    public float TimeTillDecay;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -19,9 +20,23 @@ public class EnemyMovement : MonoBehaviour {
         if(fs.isGrounded())
         {
             rb.velocity = new Vector2(MoveDir.x * MoveSpeed, rb.velocity.y);
-        }
-       
+        }  
         
+    }
+    private IEnumerator WaitTillDeath()
+    {
+        yield return new WaitForSeconds(TimeTillDecay);
+        gameObject.SetActive(false);
+    }
+    public void Squish()
+    {
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
+        StartCoroutine(WaitTillDeath());
+
+    }
+    public void Dotz()
+    {
+        //TODO: Dotz hard
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
