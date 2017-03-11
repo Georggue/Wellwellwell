@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject tutorialFoodSpawner;
     public List<GameObject> Spawners;
     public Text EndText;
+    public GameObject rudi;
+    public GameObject ulf;
     private IEnumerator ResetGame()
     {
         yield return new WaitForSeconds(3);
@@ -16,13 +18,14 @@ public class GameManager : MonoBehaviour
         {
             spawner.SetActive(false);
         }
-        var rudi = GameObject.FindObjectOfType<RudiBehaviour>();
-        rudi.Reset();
-        var ulf = GameObject.FindObjectOfType<PlayerController>();
-        ulf.Reset();
+        var rudiScript = rudi.GetComponentInChildren<RudiBehaviour>();
+        rudiScript.Reset();
+        var ulfScript = ulf.GetComponentInChildren<PlayerController>();
+        ulfScript.Reset();
         var water = GameObject.FindObjectOfType<WaterRising>();
         water.Reset();
         //todo reset clean up enemies, restart tutorial
+        StartGame();
     }
 
     private void EndGame(bool win)
