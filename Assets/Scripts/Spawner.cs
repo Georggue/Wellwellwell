@@ -20,6 +20,9 @@ public class Spawner : MonoBehaviour
             switch (Type)
             {
                 case SpawnerType.Food:
+                    yield return new WaitForSeconds(5);
+                    GameObject currentApple = Instantiate(Prefabs[1], transform.position, Quaternion.identity);
+                    currentApple.SetActive(true);
                     break;
                 case SpawnerType.Enemy:
                     yield return new WaitForSeconds(3);
