@@ -10,6 +10,8 @@ TagManager:
   - Water
   - Rudi
   - World
+  - TutorialFood
+  - TutorialEnemy
   layers:
   - Default
   - TransparentFX

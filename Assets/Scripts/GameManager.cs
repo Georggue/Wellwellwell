@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         var tutorial = GameObject.FindObjectOfType<TutorialManager>();
         tutorial.OnControlsLearned += StartTutorial;
         tutorial.NewAppleRequested += TriggerTutorialApple;
-        tutorial.NewEnemyRequested += TriggerTutorialEnemy;
+        //tutorial.NewEnemyRequested += TriggerTutorialEnemy;
         tutorialFoodSpawner = GameObject.FindWithTag("TutorialFood");
         tutorialEnemySpawner = GameObject.FindWithTag("TutorialEnemy");
     }

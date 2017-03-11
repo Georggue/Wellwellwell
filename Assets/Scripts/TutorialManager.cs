@@ -16,13 +16,20 @@ public class TutorialManager : MonoBehaviour
     public UnityAction OnControlsLearned = delegate { };
     public UnityAction OnAppleLearned = delegate { };
     public UnityAction NewAppleRequested = delegate { };
-    public UnityAction NewEnemyRequested = delegate { };
+    public UnityAction TutorialDone = delegate { };
     // Use this for initialization
+    private int appleCounter = 0;
+    public void HandleTutorialApples()
+    {
+        appleCounter++;
+        if (appleCounter == 2)
+            TutorialDone();
+    }
     void Start()
     {
         var cleanup = GameObject.FindObjectOfType<CleanUp>();
         var rudiBehaviour = GameObject.FindObjectOfType<RudiBehaviour>();
-        rudiBehaviour.AppleEaten += OnAppleLearned;
+        rudiBehaviour.AppleEaten += HandleTutorialApples;
         cleanup.AppleDestroyed += NewAppleRequested;
         TutorialStrings.Add("Rudi fell into the well! OH NOES!");
         TutorialStrings.Add(
