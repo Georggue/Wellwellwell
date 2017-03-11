@@ -32,6 +32,11 @@ public class Spawner : MonoBehaviour
         int direction = (directionTrigger) ? -1 : 1;
         GameObject current = Instantiate(Prefabs[0], new Vector3(-8.5f * direction, 0.2f, 0),
             Quaternion.identity);
+        if (direction == 1)
+        {
+            current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = new Vector3(-90,-50,-180);
+        }
+    
         current.transform.localScale = Vector3.one;
         current.SetActive(true);
         current.GetComponent<EnemyMovement>().MoveDir.x = direction;
@@ -45,16 +50,15 @@ public class Spawner : MonoBehaviour
             switch (Type)
             {
                 case SpawnerType.Food:
-                    yield return new WaitForSeconds(TimeToSpawn);
                     SpawnApple();
                     break;
                 case SpawnerType.Enemy:
-                    yield return new WaitForSeconds(TimeToSpawn);
                     SpawnEnemy();
                     break;
                 default:
                     break;
             }
+            yield return new WaitForSeconds(TimeToSpawn);
         }
     }
 

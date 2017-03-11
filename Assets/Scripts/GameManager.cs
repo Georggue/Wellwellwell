@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         ulf.Reset();
         var water = GameObject.FindObjectOfType<WaterRising>();
         water.Reset();
-        //todo reset all spawners, ulf, rudi pos, clean up gameobjects
+        //todo reset clean up enemies, restart tutorial
     }
 
     private void EndGame(bool win)

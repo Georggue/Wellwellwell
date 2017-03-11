@@ -576,7 +576,7 @@ MonoBehaviour:
   Prefabs:
   - {fileID: 479295696}
   - {fileID: 1815638788873460, guid: ad5c2940c8505fe4fbcf33deb1d7ec36, type: 2}
-  TimeToSpawn: 0
+  TimeToSpawn: 3
   Type: 0
 --- !u!4 &463359136
 Transform:
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 756073735}
   - component: {fileID: 756073734}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,8 +1029,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefabs:
   - {fileID: 479295696}
-  - {fileID: 0}
-  TimeToSpawn: 0
+  - {fileID: 1815638788873460, guid: ad5c2940c8505fe4fbcf33deb1d7ec36, type: 2}
+  TimeToSpawn: 3.5
   Type: 1
 --- !u!4 &756073735
 Transform:
@@ -2010,7 +2010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UiText: {fileID: 616657600}
-  ShowTextForSeconds: 0.5
+  ShowTextForSeconds: 2
 --- !u!1 &1665906552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,7 +2209,7 @@ Transform:
   m_PrefabInternal: {fileID: 1871807045}
   m_GameObject: {fileID: 1734433585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.09, y: 0.77, z: 0}
+  m_LocalPosition: {x: -8.41, y: 0.77, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 982303788}
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   Prefabs:
   - {fileID: 479295696}
   - {fileID: 1815638788873460, guid: ad5c2940c8505fe4fbcf33deb1d7ec36, type: 2}
-  TimeToSpawn: 0
+  TimeToSpawn: 4
   Type: 0
 --- !u!4 &1865088298
 Transform:
@@ -2516,7 +2516,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4528423873978368, guid: d0e3de3585c3e3d4581fafa581a494cb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.09
+      value: -8.41
       objectReference: {fileID: 0}
     - target: {fileID: 4528423873978368, guid: d0e3de3585c3e3d4581fafa581a494cb, type: 2}
       propertyPath: m_LocalPosition.y

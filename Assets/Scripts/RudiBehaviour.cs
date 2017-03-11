@@ -35,9 +35,9 @@ public class RudiBehaviour : MonoBehaviour
 
     private void Grow()
     {
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + 3.33f,transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + 1.25f,transform.localScale.z);
         Debug.Log("Growing");
-        if (transform.localScale.y > 11.6f)
+        if (transform.localScale.y > 10.6f)
         {
             Debug.Log("You win");
             GameEnd(true);
@@ -46,7 +46,7 @@ public class RudiBehaviour : MonoBehaviour
 
     private void Shrink()
     {
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - 3.33f, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - 1.25f, transform.localScale.z);
         Debug.Log("Shrinking");
         if (transform.localScale.y < 1.6f)
         {

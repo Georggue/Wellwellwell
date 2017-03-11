@@ -13,12 +13,14 @@ public class TutorialManager : MonoBehaviour
     private bool rightPressed = false;
     private bool spacePressed = false;
     private bool startedGame = false;
-    
+    private CleanUp cleanup;
+    private RudiBehaviour rudiBehaviour;
     public UnityAction OnAppleLearned = delegate { };
     public UnityAction NewAppleRequested = delegate { };
     public UnityAction TutorialDone = delegate { };
     // Use this for initialization
     private int appleCounter = 0;
+ 
     public void HandleTutorialApples()
     {
         appleCounter++;
@@ -28,6 +30,8 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
+            cleanup.AppleDestroyed -= NewAppleRequested;
+            rudiBehaviour.AppleEaten -= HandleTutorialApples;
             TutorialDone();
         }
        
@@ -35,8 +39,8 @@ public class TutorialManager : MonoBehaviour
     }
     void Start()
     {
-        var cleanup = GameObject.FindObjectOfType<CleanUp>();
-        var rudiBehaviour = GameObject.FindObjectOfType<RudiBehaviour>();
+        cleanup = GameObject.FindObjectOfType<CleanUp>();
+        rudiBehaviour = GameObject.FindObjectOfType<RudiBehaviour>();
         rudiBehaviour.AppleEaten += HandleTutorialApples;
         cleanup.AppleDestroyed += NewAppleRequested;
         TutorialStrings.Add("Rudi fell into the well! OH NOES!");
@@ -65,11 +69,11 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             leftPressed = true;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             rightPressed = true;
         }
@@ -77,6 +81,7 @@ public class TutorialManager : MonoBehaviour
         {
             spacePressed = true;
         }
+       
         if (!startedGame && leftPressed && rightPressed && spacePressed)
         {
             startedGame = true;
