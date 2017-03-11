@@ -12,7 +12,7 @@ public class RudiBehaviour : MonoBehaviour {
                 Grow();
                 break;
             case "Enemy":
-                Shrink();
+                Shrink();                
                 break;
             case "Ulf":
                 Debug.Log("You are both dead... Great Work");
@@ -23,6 +23,7 @@ public class RudiBehaviour : MonoBehaviour {
             default:
                 break;
         }
+        collision.gameObject.SetActive(false);
     }
 
     private void Grow()
