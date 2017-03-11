@@ -19,19 +19,20 @@ public class EnemyMovement : MonoBehaviour
     private float DotzCooldown = 1;
     private ParticleSystem particles;
 
-	void Start ()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         fs = GetComponentInChildren<FootScript>();
         particles = GetComponentInChildren<ParticleSystem>(true);
-	}
-	
-	void Update ()
+        particles.gameObject.SetActive(false);
+    }
+
+    void Update()
     {
-        if(fs.isGrounded() && !dotzCooldownActive && !isDying)
+        if (fs.isGrounded() && !dotzCooldownActive && !isDying)
         {
             rb.velocity = new Vector2(MoveDir.x * MoveSpeed, rb.velocity.y);
-        }          
+        }
     }
 
     private IEnumerator WaitTillDeath()
@@ -42,8 +43,12 @@ public class EnemyMovement : MonoBehaviour
 
     public void Squish()
     {
+        if (isDying)
+            return;
+
         transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
         isDying = true;
+        particles.gameObject.SetActive(true);
         StartCoroutine(WaitTillDeath());
     }
 
@@ -53,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
 
         particles.gameObject.SetActive(true);
         Vector2 dotzDirection = Vector2.up;
-        if(dotzOrigin.x > transform.position.x)
+        if (dotzOrigin.x > transform.position.x)
         {
             dotzDirection = dotzDirection.Rotate(DotzAngle);
         }
@@ -70,15 +75,16 @@ public class EnemyMovement : MonoBehaviour
         dotzCooldownActive = true;
         yield return new WaitForSeconds(DotzCooldown);
         dotzCooldownActive = false;
+        particles.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Food")
+        if (collision.collider.tag == "Food")
         {
             collision.gameObject.SetActive(false);
         }
-        else if(collision.collider.tag == "Rudi")
+        else if (collision.collider.tag == "Rudi")
         {
             this.gameObject.SetActive(false);
         }

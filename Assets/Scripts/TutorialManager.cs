@@ -5,10 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 public class TutorialManager : MonoBehaviour
 {
+    private struct TutorialText
+    {
+        public string Text;
+        public float DisplayTime;
+    }
     
     public Text UiText;
-    private List<string> TutorialStrings = new List<string>();
-    public float ShowTextForSeconds;
+    private List<TutorialText> TutorialStrings = new List<TutorialText>();
     private bool leftPressed = false;
     private bool rightPressed = false;
     private bool spacePressed = false;
@@ -33,6 +37,8 @@ public class TutorialManager : MonoBehaviour
             cleanup.AppleDestroyed -= NewAppleRequested;
             rudiBehaviour.AppleEaten -= HandleTutorialApples;
             TutorialDone();
+            StartCoroutine(DisplaySecondTutorialTexts());
+
         }
        
 
@@ -43,29 +49,34 @@ public class TutorialManager : MonoBehaviour
         rudiBehaviour = GameObject.FindObjectOfType<RudiBehaviour>();
         rudiBehaviour.AppleEaten += HandleTutorialApples;
         cleanup.AppleDestroyed += NewAppleRequested;
-        TutorialStrings.Add("Rudi fell into the well! OH NOES!");
-        TutorialStrings.Add(
-            "Help Ulf save his brother by pushing apples into the well. Be careful not to fall into the well yourself!");
-        TutorialStrings.Add("Hurry up, the water in the well is rising!");
-        TutorialStrings.Add("Move left and right with arrow keys, jump with space");
-        TutorialStrings.Add("Beware of evil predators, they eat apples and hurt Rudi!");
-        TutorialStrings.Add("Enemies can be defeated by throwing them off the screen or jumping on them.");
+        TutorialStrings.Add(new TutorialText{ DisplayTime = 3f,Text= "Rudi fell into the well! OH NOES!" });
+        TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Move left and right with arrow keys, jump with space" });
+        TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Push apples down the well" });
+        TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Enemies eat apples and hurt Rudi!" });
+        TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Tackle or squish enemies to defeat them!" });
+        TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Hurry up, the water is rising!" });
+       
         StartCoroutine(DisplayTutorialTexts());
     }
 
     private IEnumerator DisplayTutorialTexts()
     {
-        foreach (var text in TutorialStrings)
+        for (int i = 0; i < 3; i++)
         {
-            UiText.text = text;
-            yield return new WaitForSeconds(ShowTextForSeconds);
-        }
+            UiText.text = TutorialStrings[i].Text;
+            yield return new WaitForSeconds(TutorialStrings[i].DisplayTime);
+        };
     }
-    private void initGame()
+    private IEnumerator DisplaySecondTutorialTexts()
     {
+        for (int i = 3; i < 6; i++)
+        {
+            UiText.text = TutorialStrings[i].Text;
+            yield return new WaitForSeconds(TutorialStrings[i].DisplayTime);
+        }
         UiText.gameObject.SetActive(false);
-
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -86,7 +97,7 @@ public class TutorialManager : MonoBehaviour
         {
             startedGame = true;
             NewAppleRequested();
-            initGame();
+           
         }
     }
 }
