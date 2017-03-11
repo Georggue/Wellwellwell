@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class RudiBehaviour : MonoBehaviour {
-
+public class RudiBehaviour : MonoBehaviour
+{
+    public UnityAction AppleEaten = () => { };
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.tag)
         {
             case "Food":
+                AppleEaten();
                 Grow();
                 break;
             case "Enemy":
