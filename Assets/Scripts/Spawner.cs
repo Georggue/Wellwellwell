@@ -6,6 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public List<GameObject> Prefabs;
     public float TimeToSpawn;
+    private float initialTime;
+
     public enum SpawnerType
     {
         Food,
@@ -23,20 +25,46 @@ public class Spawner : MonoBehaviour
 
     private void SpawnApple()
     {
-        GameObject currentApple = Instantiate(Prefabs[1], transform.position, Quaternion.identity);
+        Vector3 applePos = transform.position + new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(-1f, 1f), 0);
+        GameObject currentApple = Instantiate(Prefabs[1], applePos, Quaternion.identity);
         currentApple.SetActive(true);
     }
 
     private void SpawnEnemy()
     {
-        int direction = (directionTrigger) ? -1 : 1;
-        GameObject current = Instantiate(Prefabs[0], new Vector3(-8.5f * direction, 0.2f, 0),
+        float directionRand = Random.Range(-1f, 1f);
+        float posRand = Random.Range(-1f, 1f);
+        float ypos = (posRand > 0) ? 0.2f : -5f;
+
+        int direction = (directionRand > 0) ? 1 : -1;
+        GameObject current = Instantiate(Prefabs[0], new Vector3(-8.5f * direction, ypos, -1f),
             Quaternion.identity);
         if (direction == 1)
         {
-            current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = new Vector3(-90,-50,-180);
+            Vector3 rotations = new Vector3(-90, -50, -180);
+            if (ypos < 0)
+            {
+                rotations.x += 45;
+                current.GetComponent<Rigidbody2D>().gravityScale = 0;
+                current.GetComponent<EnemyMovement>().MoveDir.y = 1f;
+                current.layer = 11;
+            }
+            current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = rotations;
         }
-    
+        else if (direction == -1)
+        {
+            Vector3 rotations = new Vector3(-90, 50, -180);
+            if (ypos < 0)
+            {
+                rotations.x += 45;
+                current.GetComponent<Rigidbody2D>().gravityScale = 0;
+                current.GetComponent<EnemyMovement>().MoveDir.y = 1f;
+                current.layer = 11;
+            }
+            current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = rotations;
+        }
+        
+
         current.transform.localScale = Vector3.one;
         current.SetActive(true);
         current.GetComponent<EnemyMovement>().MoveDir.x = direction;
@@ -45,14 +73,17 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnObject()
     {
+        initialTime = TimeToSpawn;
         while (true)
         {
             switch (Type)
             {
                 case SpawnerType.Food:
+                    TimeToSpawn = initialTime + Random.Range(0, 4);
                     SpawnApple();
                     break;
                 case SpawnerType.Enemy:
+                    TimeToSpawn = initialTime + Random.Range(0, 2);
                     SpawnEnemy();
                     break;
                 default:
@@ -80,7 +111,6 @@ public class Spawner : MonoBehaviour
             default:
                 break;
         }
-
     }
 
     public void StartSpawnLoop()

@@ -29,9 +29,13 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (fs.isGrounded() && !dotzCooldownActive && !isDying)
+        if ((fs.isGrounded() || fs.transform.position.y < 0) && !dotzCooldownActive && !isDying)
         {
-            rb.velocity = new Vector2(MoveDir.x * MoveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(MoveDir.x * MoveSpeed, MoveDir.y*MoveSpeed);
+        }
+        if (isDying)
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -49,6 +53,7 @@ public class EnemyMovement : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
         isDying = true;
         particles.gameObject.SetActive(true);
+        gameObject.GetComponentInChildren<Collider2D>().enabled = false;
         StartCoroutine(WaitTillDeath());
     }
 

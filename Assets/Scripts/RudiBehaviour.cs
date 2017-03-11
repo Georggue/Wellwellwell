@@ -8,6 +8,9 @@ public class RudiBehaviour : MonoBehaviour
     public UnityAction AppleEaten = () => { };
     private Vector3 InitialSize;
     public UnityAction<bool> GameEnd;
+    public float MaxHeight;
+    public int Steps;
+    private float stepSize;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.tag)
@@ -35,9 +38,9 @@ public class RudiBehaviour : MonoBehaviour
 
     private void Grow()
     {
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + 1.25f,transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + stepSize, transform.localScale.z);
         Debug.Log("Growing");
-        if (transform.localScale.y > 10.6f)
+        if (transform.localScale.y > MaxHeight)
         {
             Debug.Log("You win");
             GameEnd(true);
@@ -46,7 +49,7 @@ public class RudiBehaviour : MonoBehaviour
 
     private void Shrink()
     {
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - 1.25f, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - stepSize, transform.localScale.z);
         Debug.Log("Shrinking");
         if (transform.localScale.y < 1.6f)
         {
@@ -58,7 +61,7 @@ public class RudiBehaviour : MonoBehaviour
     void Start ()
     {
         InitialSize = transform.localScale;
-
+        stepSize = (MaxHeight - 1.6f) / Steps;
     }
 	
 	// Update is called once per frame

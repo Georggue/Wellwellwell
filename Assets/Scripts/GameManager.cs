@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -13,19 +14,20 @@ public class GameManager : MonoBehaviour
     private IEnumerator ResetGame()
     {
         yield return new WaitForSeconds(3);
-        EndText.gameObject.SetActive(false);
-        foreach (var spawner in Spawners)
-        {
-            spawner.SetActive(false);
-        }
-        var rudiScript = rudi.GetComponentInChildren<RudiBehaviour>();
-        rudiScript.Reset();
-        var ulfScript = ulf.GetComponentInChildren<PlayerController>();
-        ulfScript.Reset();
-        var water = GameObject.FindObjectOfType<WaterRising>();
-        water.Reset();
-        //todo reset clean up enemies, restart tutorial
-        StartGame();
+        SceneManager.LoadScene(0);
+        //EndText.gameObject.SetActive(false);
+        //foreach (var spawner in Spawners)
+        //{
+        //    spawner.SetActive(false);
+        //}
+        //var rudiScript = rudi.GetComponentInChildren<RudiBehaviour>();
+        //rudiScript.Reset();
+        //var ulfScript = ulf.GetComponentInChildren<PlayerController>();
+        //ulfScript.Reset();
+        //var water = GameObject.FindObjectOfType<WaterRising>();
+        //water.Reset();
+        ////todo reset clean up enemies, restart tutorial
+        //StartGame();
     }
 
     private void EndGame(bool win)

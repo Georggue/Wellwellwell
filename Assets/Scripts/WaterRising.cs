@@ -14,7 +14,10 @@ public class WaterRising : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+        
+	    if (TutorialManager.Instance.TutorialActive) return;
         transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + WaterRisingFactor, transform.localScale.z);
     }
 

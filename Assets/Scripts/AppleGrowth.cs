@@ -28,7 +28,7 @@ public class AppleGrowth : MonoBehaviour
     private Collider2D col;
     private Material mat;
     private bool attached;
-
+    
     private IEnumerator AppleLife()
     {
         yield return new WaitForSeconds(TimeTillRipe);
@@ -48,6 +48,7 @@ public class AppleGrowth : MonoBehaviour
         yield return new WaitForSeconds(TimeTillRotten);
         transform.DOScale(Vector3.zero, DissapearDuration);
         yield return new WaitForSeconds(DissapearDuration);
+        TutorialManager.Instance.AppleRot();
         gameObject.SetActive(false);
     }
 
@@ -80,6 +81,7 @@ public class AppleGrowth : MonoBehaviour
     {
         rb.gravityScale = NormalGravity;
         attached = false;
-        //StartCoroutine(Rot());
+        StartCoroutine(Rot());
+      
     }
 }
