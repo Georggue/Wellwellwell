@@ -7,11 +7,14 @@ public class AppleGrowth : MonoBehaviour
 {
     public float TimeTillRipe = 2f;
     public float TimeTillDrop = 0.5f;
+    public float TimeTillRotten = 5f;
+    public float DissapearDuration = 0.5f;
     public float NormalGravity = 2;
 
     [Header("Colors")]
     public Color ColorUnripe;
     public Color ColorRipe;
+    public Color ColorRotten;
     public float ColorChangeDuration = 0.2f;
 
     [Header("Shaking")]
@@ -24,6 +27,7 @@ public class AppleGrowth : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D col;
     private Material mat;
+    private bool attached;
 
     private IEnumerator AppleLife()
     {
@@ -35,7 +39,16 @@ public class AppleGrowth : MonoBehaviour
         transform.DOShakeRotation(ShakeDuration, ShakeStrength, ShakeVibrato, ShakeRandomness, FadeoutShake);
 
         yield return new WaitForSeconds(ShakeDuration);
-        rb.gravityScale = NormalGravity;
+        Fall();
+    }
+
+    private IEnumerator Rot()
+    {
+        mat.DOColor(ColorRotten, TimeTillRotten);
+        yield return new WaitForSeconds(TimeTillRotten);
+        transform.DOScale(Vector3.zero, DissapearDuration);
+        yield return new WaitForSeconds(DissapearDuration);
+        gameObject.SetActive(false);
     }
 
 	void Start ()
@@ -55,8 +68,18 @@ public class AppleGrowth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StopAllCoroutines();
-        transform.DOKill();
+        if (attached)
+        {
+            StopAllCoroutines();
+            transform.DOKill();
+            Fall();
+        }
+    }
+
+    private void Fall()
+    {
         rb.gravityScale = NormalGravity;
+        attached = false;
+        StartCoroutine(Rot());
     }
 }

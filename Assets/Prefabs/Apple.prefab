@@ -159,9 +159,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeTillRipe: 1
   TimeTillDrop: 1
+  TimeTillRotten: 5
+  DissapearDuration: 0.2
   NormalGravity: 2
   ColorUnripe: {r: 0.6139527, g: 0.86764705, b: 0.27432957, a: 1}
   ColorRipe: {r: 1, g: 0.13333334, b: 0.007843138, a: 1}
+  ColorRotten: {r: 0.25735295, g: 0.2217255, b: 0.1835532, a: 1}
   ColorChangeDuration: 0.2
   ShakeDuration: 0.2
   ShakeStrength: 10
