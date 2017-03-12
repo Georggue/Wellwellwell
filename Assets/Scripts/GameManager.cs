@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Text EndText;
     public GameObject rudi;
     public GameObject ulf;
+    public GameObject menuScreen;
     private IEnumerator ResetGame()
     {
         yield return new WaitForSeconds(3);
@@ -37,9 +38,11 @@ public class GameManager : MonoBehaviour
         {
             
             EndText.text = "You Win!";
+            SoundManager.Instance.PlaySound(SoundManager.Sound.WinSound);
         }
         else
         {
+            SoundManager.Instance.PlaySound(SoundManager.Sound.LoseSound);
             EndText.text = "You Die! :'( ";
         }
         StartCoroutine(ResetGame());
@@ -77,5 +80,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+        if (Input.GetKeyDown(KeyCode.Return) && menuScreen.activeInHierarchy)
+        {
+            menuScreen.SetActive(false);
+            TutorialManager.Instance.StartTutorial();
+        }
     }
+
 }

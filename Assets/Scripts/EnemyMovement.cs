@@ -37,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
+        
     }
 
     private IEnumerator WaitTillDeath()
@@ -49,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (isDying)
             return;
-
+        SoundManager.Instance.PlaySound(SoundManager.Sound.Squish);
         transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
         isDying = true;
         particles.gameObject.SetActive(true);
@@ -60,7 +61,7 @@ public class EnemyMovement : MonoBehaviour
     public void Dotz(Vector2 dotzOrigin)
     {
         if (dotzCooldownActive) return;
-
+        SoundManager.Instance.PlaySound(SoundManager.Sound.Dotz);
         particles.gameObject.SetActive(true);
         Vector2 dotzDirection = Vector2.up;
         if (dotzOrigin.x > transform.position.x)
@@ -87,10 +88,12 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.collider.tag == "Food")
         {
+            SoundManager.Instance.PlaySound(SoundManager.Sound.AppleEatenByEnemy);
             collision.gameObject.SetActive(false);
         }
         else if (collision.collider.tag == "Rudi")
         {
+            
             this.gameObject.SetActive(false);
         }
     }

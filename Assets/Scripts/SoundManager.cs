@@ -89,6 +89,7 @@ public class SoundManager : MonoBehaviour
         if (!sound.isPlaying)
         {
             sound.Play();
+            sound.DORewind();
         }
     }
     // Use this for initialization

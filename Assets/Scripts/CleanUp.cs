@@ -9,6 +9,7 @@ public class CleanUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.tag);
         if (other.CompareTag("Food"))
         {
             AppleDestroyed();

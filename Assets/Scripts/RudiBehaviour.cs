@@ -17,9 +17,11 @@ public class RudiBehaviour : MonoBehaviour
         {
             case "Food":
                 AppleEaten();
+                SoundManager.Instance.PlaySound(SoundManager.Sound.RudiEatsGood);
                 Grow();
                 break;
             case "Enemy":
+                SoundManager.Instance.PlaySound(SoundManager.Sound.RudiEatsBad);
                 Shrink();                
                 break;
             case "Ulf":
@@ -28,8 +30,9 @@ public class RudiBehaviour : MonoBehaviour
                 break;
             case "Water":
                 Debug.Log("You drowned");
+                SoundManager.Instance.PlaySound(SoundManager.Sound.Drowning);
                 GameEnd(false);
-                break;
+                return;
             default:
                 break;
         }

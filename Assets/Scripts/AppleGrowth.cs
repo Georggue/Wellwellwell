@@ -69,12 +69,16 @@ public class AppleGrowth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.AppleDropDotz);
         if (attached)
         {
+           
             StopAllCoroutines();
             transform.DOKill();
             Fall();
         }
+       
+
     }
 
     private void Fall()

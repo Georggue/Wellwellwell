@@ -27,7 +27,7 @@ public class TutorialManager : MonoBehaviour
     // Use this for initialization
     private int appleCounter = 0;
     public bool TutorialActive = true;
- 
+    public bool MenuActive = true;
     public void HandleTutorialApples()
     {
         appleCounter++;
@@ -62,7 +62,8 @@ public class TutorialManager : MonoBehaviour
         rudiBehaviour = GameObject.FindObjectOfType<RudiBehaviour>();
         rudiBehaviour.AppleEaten += HandleTutorialApples;
         AppleRot += HandleAppleRot;
-        cleanup.AppleDestroyed += NewAppleRequested;
+        cleanup.AppleDestroyed += () => { NewAppleRequested(); };
+
         TutorialStrings.Add(new TutorialText{ DisplayTime = 3f,Text= "Rudi fell into the well! OH NOES!" });
         TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Move left and right with arrow keys, jump with space" });
         TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Push apples down the well before they go bad" });
@@ -70,9 +71,14 @@ public class TutorialManager : MonoBehaviour
         TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Tackle or squish enemies to defeat them!" });
         TutorialStrings.Add(new TutorialText{ DisplayTime = 3f, Text = "Hurry up, the water is rising!" });
         
-        StartCoroutine(DisplayTutorialTexts(0,2,false));
+       
     }
 
+    public void StartTutorial()
+    {
+        MenuActive = false;
+        StartCoroutine(DisplayTutorialTexts(0, 2, false));
+    }
     private IEnumerator DisplayTutorialTexts(int from, int to, bool last)
     {
         for (int i = from; i < to; i++)
@@ -86,6 +92,8 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (MenuActive) return;
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             leftPressed = true;

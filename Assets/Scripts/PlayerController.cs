@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (TutorialManager.Instance.MenuActive) return;
         if (Input.GetButtonDown("Jump") && footScript.isGrounded())
         {
             jumpPressed = true;
@@ -36,10 +37,12 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (TutorialManager.Instance.MenuActive) return;
         horizontalMovement = Input.GetAxis("Horizontal");
 
         if (jumpPressed)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Sound.Jump);
             rb.AddForce(Vector2.up * JumpStrength, ForceMode2D.Impulse);
             jumpPressed = false;
         }
