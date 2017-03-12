@@ -19,7 +19,7 @@ public class WormCatcher : MonoBehaviour
         rb.gravityScale = 8f;
         other.gameObject.GetComponent<EnemyMovement>().MoveDir = (pos.x < 0) ? new Vector2(1, 0) : new Vector2(-1, 0);
 
-        other.GetComponentInChildren<TimedTrailRenderer>().emit = false;
+        //other.GetComponentInChildren<TimedTrailRenderer>().emit = false;
 
     }
 

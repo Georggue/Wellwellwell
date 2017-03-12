@@ -6,11 +6,14 @@ using UnityEngine.Events;
 public class RudiBehaviour : MonoBehaviour
 {
     public UnityAction AppleEaten = () => { };
-    private Vector3 InitialSize;
     public UnityAction<bool> GameEnd;
-    public float MaxHeight;
-    public int Steps;
-    private float stepSize;
+
+    public int Step;
+
+    private SkinnedMeshRenderer mesh;
+    private int currentSize;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.tag)
@@ -41,39 +44,29 @@ public class RudiBehaviour : MonoBehaviour
 
     private void Grow()
     {
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + stepSize, transform.localScale.z);
-        Debug.Log("Growing");
-        if (transform.localScale.y > MaxHeight)
+        currentSize += Step;
+        mesh.SetBlendShapeWeight(0, currentSize);
+        if (currentSize >= 100)
         {
-            Debug.Log("You win");
             GameEnd(true);
         }
     }
 
     private void Shrink()
     {
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - stepSize, transform.localScale.z);
-        Debug.Log("Shrinking");
-        if (transform.localScale.y < 1.6f)
+        currentSize -= Step;
+        mesh.SetBlendShapeWeight(0, currentSize);
+        if (currentSize <= 0)
         {
-            Debug.Log("You are dead");
             GameEnd(false);
         }
     }
     // Use this for initialization
     void Start ()
     {
-        InitialSize = transform.localScale;
-        stepSize = (MaxHeight - 1.6f) / Steps;
+        currentSize = 0;
+        mesh = GetComponentInChildren<SkinnedMeshRenderer>();
+        mesh.SetBlendShapeWeight(0, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    public void Reset()
-    {
-        transform.localScale = InitialSize;
-    }
 }

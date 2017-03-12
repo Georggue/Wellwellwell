@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 99a6e37d0a3ba834cb08cd395a697681
+timeCreated: 1489322699
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature.002
+    100002: Belly
+    100004: Butt
+    100006: Eyeball_L
+    100008: Eyeball_L_end
+    100010: Eyeball_R
+    100012: Eyeball_R_end
+    100014: Eyebrow_Inner_L
+    100016: Eyebrow_Inner_R
+    100018: Eyebrow_Outer_L
+    100020: Eyebrow_Outer_L_end
+    100022: Eyebrow_Outer_R
+    100024: Eyebrow_Outer_R_end
+    100026: Face
+    100028: Head
+    100030: Head_end
+    100032: Leg_Lower_L
+    100034: Leg_Lower_L_end
+    100036: Leg_Lower_R
+    100038: Leg_Lower_R_end
+    100040: Leg_Upper_L
+    100042: Leg_Upper_R
+    100044: //RootNode
+    100046: Sphere
+    100048: Ulf_new
+    400000: Armature.002
+    400002: Belly
+    400004: Butt
+    400006: Eyeball_L
+    400008: Eyeball_L_end
+    400010: Eyeball_R
+    400012: Eyeball_R_end
+    400014: Eyebrow_Inner_L
+    400016: Eyebrow_Inner_R
+    400018: Eyebrow_Outer_L
+    400020: Eyebrow_Outer_L_end
+    400022: Eyebrow_Outer_R
+    400024: Eyebrow_Outer_R_end
+    400026: Face
+    400028: Head
+    400030: Head_end
+    400032: Leg_Lower_L
+    400034: Leg_Lower_L_end
+    400036: Leg_Lower_R
+    400038: Leg_Lower_R_end
+    400040: Leg_Upper_L
+    400042: Leg_Upper_R
+    400044: //RootNode
+    400046: Sphere
+    400048: Ulf_new
+    4300000: Ulf_new
+    4300002: Sphere
+    7400000: Armature.002|Rudi_Eat
+    7400002: Armature.002|Ulf_Idle
+    7400004: Armature.002|Ulf_Walk
+    7400006: Sphere|Rudi_Eat
+    9500000: //RootNode
+    13700000: Sphere
+    13700002: Ulf_new
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

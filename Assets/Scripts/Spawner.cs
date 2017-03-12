@@ -56,7 +56,7 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                current.GetComponentInChildren<TimedTrailRenderer>().emit = false;
+                //current.GetComponentInChildren<TimedTrailRenderer>().emit = false;
             }
             current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = rotations;
         }
@@ -75,7 +75,7 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                current.GetComponentInChildren<TimedTrailRenderer>().emit = false;
+                //current.GetComponentInChildren<TimedTrailRenderer>().emit = false;
             }
             current.GetComponentInChildren<MeshRenderer>().transform.localEulerAngles = rotations;
         }
